@@ -74,8 +74,7 @@ tasks.named<DefaultTask>("build") {
 			from("${layout.buildDirectory.file("libs").get()}")
 			into("${rootDir}/build")
 			include("**/*.jar")
-			exclude("**/*-sources.jar")
-			exclude("**/*-javadoc.jar")
+			exclude("**/*-sources.jar", "**/*-javadoc.jar")
 		}
 	}
 }

@@ -2,10 +2,6 @@ plugins {
 	`kotlin-dsl`
 }
 
-ext {
-	set("springBootVersion", "3.4.2")
-}
-
 repositories {
 	mavenLocal()
 	maven { name = "阿里云"; url = uri("https://maven.aliyun.com/repository/public/") }
