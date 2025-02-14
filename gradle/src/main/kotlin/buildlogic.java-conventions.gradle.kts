@@ -70,3 +70,7 @@ tasks.withType<ProcessResources> {
 		exclude("**/.gitkeep")
 	}
 }
+
+//configurations.all {
+//	exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
+//}

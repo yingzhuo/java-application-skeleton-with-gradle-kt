@@ -47,7 +47,6 @@ tasks.register<DefaultTask>("deleteJar") {
 }
 
 tasks.named("build") {
-
 	// 保证 :build 最后运行
 	mustRunAfter(
 		getLeafProjectNames(project).stream().map { "$it:build" }.toList()
