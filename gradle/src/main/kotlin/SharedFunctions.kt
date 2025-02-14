@@ -2,15 +2,21 @@ import org.gradle.api.Project
 
 object SharedFunctions {
 
+	private const val EMPTY_STR: String = ""
+
+	// -----------------------------------------------------------------------------------------------------------------
+
 	fun getLeafProjectNames(rootProject: Project): List<String> {
-		val list = mutableListOf<String>()
-		for (level1 in rootProject.subprojects) {
-			for (level2 in level1.subprojects) {
-				list.add(":${level1.name}:${level2.name}")
-			}
+		return rootProject.allprojects.filter {
+			it.subprojects.isEmpty()
+		}.map {
+			it.displayName
+				.replace("project '", EMPTY_STR)
+				.replace("'", EMPTY_STR)
 		}
-		return list.toList()
 	}
+
+	// -----------------------------------------------------------------------------------------------------------------
 
 	fun getGradleProperty(
 		project: Project,
