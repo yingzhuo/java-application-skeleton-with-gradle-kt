@@ -1,3 +1,9 @@
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ * 构建逻辑共享函数
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
 import org.gradle.api.Project
 import java.util.*
 
@@ -38,4 +44,19 @@ fun getGradlePropertyAsBoolean(
 	defaultValue: Boolean = false
 ): Boolean {
 	return getGradleProperty(project, propertyName, defaultValue.toString()).toBoolean()
+}
+
+/**
+ * 获取环境变量
+ */
+fun getEnv(name: String, defaultValue: String = "<no value>"): String {
+	return Optional.ofNullable(System.getenv(name))
+		.orElse(defaultValue)
+}
+
+/**
+ * 获取环境变量 (boolean类型)
+ */
+fun getEnvAsBoolean(name: String, defaultValue: Boolean = false): Boolean {
+	return getEnv(name, defaultValue.toString()).toBoolean()
 }

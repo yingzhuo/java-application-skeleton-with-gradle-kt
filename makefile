@@ -26,6 +26,4 @@ github: clean
 	@git commit -m "$(shell /bin/date "+%F %T")"
 	@git push
 
-.PHONY: usage clean compile build \
-	setup-gradle-wrapper \
-	github
+.PHONY: usage clean compile build setup-gradle-wrapper github
