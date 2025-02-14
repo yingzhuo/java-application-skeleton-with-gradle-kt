@@ -20,4 +20,12 @@ object SharedFunctions {
 		return project.providers.gradleProperty(propertyName).orElse(defaultPropertyValue).get()
 	}
 
+	fun getGradlePropertyAsBoolean(
+		project: Project,
+		propertyName: String,
+		defaultValue: Boolean = false
+	): Boolean {
+		return getGradleProperty(project, propertyName, defaultValue.toString()).toBoolean()
+	}
+
 }
