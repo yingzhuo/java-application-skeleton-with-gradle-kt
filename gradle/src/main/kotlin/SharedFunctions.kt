@@ -4,8 +4,10 @@ object SharedFunctions {
 
 	private const val EMPTY_STR: String = ""
 
-	// -----------------------------------------------------------------------------------------------------------------
-
+	/**
+	 * 获取叶子子项目名称 <br>
+	 * 格式 :root-project:sub-project:sub-sub-project
+	 */
 	fun getLeafProjectNames(rootProject: Project): List<String> {
 		return rootProject.allprojects
 			.filter {
@@ -17,16 +19,20 @@ object SharedFunctions {
 			}
 	}
 
-	// -----------------------------------------------------------------------------------------------------------------
-
+	/**
+	 * 获取gradle.properties文件配置
+	 */
 	fun getGradleProperty(
 		project: Project,
 		propertyName: String,
 		defaultPropertyValue: String = "<no value>"
-	): String? {
+	): String {
 		return project.providers.gradleProperty(propertyName).orElse(defaultPropertyValue).get()
 	}
 
+	/**
+	 * 获取gradle.properties文件配置 (boolean类型)
+	 */
 	fun getGradlePropertyAsBoolean(
 		project: Project,
 		propertyName: String,
