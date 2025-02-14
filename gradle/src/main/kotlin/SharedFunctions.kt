@@ -7,13 +7,14 @@ object SharedFunctions {
 	// -----------------------------------------------------------------------------------------------------------------
 
 	fun getLeafProjectNames(rootProject: Project): List<String> {
-		return rootProject.allprojects.filter {
-			it.subprojects.isEmpty()
-		}.map {
-			it.displayName
-				.replace("project '", EMPTY_STR)
-				.replace("'", EMPTY_STR)
-		}
+		return rootProject.allprojects
+			.filter {
+				it.subprojects.isEmpty()
+			}.map {
+				it.displayName
+					.replace("project '", EMPTY_STR)
+					.replace("'", EMPTY_STR)
+			}
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------
