@@ -21,6 +21,7 @@ fun getLeafProjectNames(rootProject: Project): SortedSet<String> {
 			it.displayName
 				.replace("project '", EMPTY_STR)
 				.replace("'", EMPTY_STR)
+				.trim()
 		}.toSortedSet()
 }
 
