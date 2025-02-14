@@ -7,14 +7,14 @@ plugins {
 }
 
 tasks.named<Wrapper>("wrapper") {
-	distributionUrl = SharedFunctions.getGradleProperty(project, "project.gradle-wrapper.distributionUrl")
+	distributionUrl = getGradleProperty(project, "project.gradle-wrapper.distributionUrl")
 }
 
 tasks.register<Zip>("zipJar") {
 	group = "build"
 	description = "Zip jars"
 
-	enabled = SharedFunctions.getGradlePropertyAsBoolean(project, "project.building.zipAfterBuild")
+	enabled = getGradlePropertyAsBoolean(project, "project.building.zipAfterBuilding")
 
 	from(layout.projectDirectory) {
 		include("README.md")
@@ -30,17 +30,36 @@ tasks.register<Zip>("zipJar") {
 	archiveFileName = "${rootProject.name}-${rootProject.version}.zip"
 }
 
+tasks.register<DefaultTask>("deleteJar") {
+	group = "build"
+	description = "Delete jar"
+
+	enabled = getGradlePropertyAsBoolean(project, "project.building.deleteJarAfterZipping")
+
+	doLast {
+		delete(
+			fileTree(layout.buildDirectory) {
+				include("**/*.jar")
+				exclude("**/*.zip")
+			}
+		)
+	}
+}
+
 tasks.named("build") {
 
+	// 保证 :build 最后运行
 	mustRunAfter(
-		SharedFunctions.getLeafProjectNames(project).stream().map { "$it:build" }.toList()
+		getLeafProjectNames(project).stream().map { "$it:build" }.toList()
 	)
-	finalizedBy("zipJar")
+	finalizedBy("zipJar", "deleteJar")
 }
 
 tasks.named("clean") {
+
+	// 保证 :clean 最后运行
 	mustRunAfter(
-		SharedFunctions.getLeafProjectNames(project).stream().map { "$it:clean" }.toList()
+		getLeafProjectNames(project).stream().map { "$it:clean" }.toList()
 	)
 
 	doLast {

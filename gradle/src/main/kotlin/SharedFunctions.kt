@@ -1,45 +1,41 @@
 import org.gradle.api.Project
 import java.util.*
 
-object SharedFunctions {
+private const val EMPTY_STR: String = ""
 
-	private const val EMPTY_STR: String = ""
+/**
+ * 获取叶子子项目名称 <br>
+ * 格式 :sub-project:sub-sub-project
+ */
+fun getLeafProjectNames(rootProject: Project): SortedSet<String> {
+	return rootProject.allprojects
+		.filter {
+			it.subprojects.isEmpty()
+		}.map {
+			it.displayName
+				.replace("project '", EMPTY_STR)
+				.replace("'", EMPTY_STR)
+		}.toSortedSet()
+}
 
-	/**
-	 * 获取叶子子项目名称 <br>
-	 * 格式 :sub-project:sub-sub-project
-	 */
-	fun getLeafProjectNames(rootProject: Project): SortedSet<String> {
-		return rootProject.allprojects
-			.filter {
-				it.subprojects.isEmpty()
-			}.map {
-				it.displayName
-					.replace("project '", EMPTY_STR)
-					.replace("'", EMPTY_STR)
-			}.toSortedSet()
-	}
+/**
+ * 获取gradle.properties文件配置
+ */
+fun getGradleProperty(
+	project: Project,
+	propertyName: String,
+	defaultPropertyValue: String = "<no value>"
+): String {
+	return project.providers.gradleProperty(propertyName).orElse(defaultPropertyValue).get()
+}
 
-	/**
-	 * 获取gradle.properties文件配置
-	 */
-	fun getGradleProperty(
-		project: Project,
-		propertyName: String,
-		defaultPropertyValue: String = "<no value>"
-	): String {
-		return project.providers.gradleProperty(propertyName).orElse(defaultPropertyValue).get()
-	}
-
-	/**
-	 * 获取gradle.properties文件配置 (boolean类型)
-	 */
-	fun getGradlePropertyAsBoolean(
-		project: Project,
-		propertyName: String,
-		defaultValue: Boolean = false
-	): Boolean {
-		return getGradleProperty(project, propertyName, defaultValue.toString()).toBoolean()
-	}
-
+/**
+ * 获取gradle.properties文件配置 (boolean类型)
+ */
+fun getGradlePropertyAsBoolean(
+	project: Project,
+	propertyName: String,
+	defaultValue: Boolean = false
+): Boolean {
+	return getGradleProperty(project, propertyName, defaultValue.toString()).toBoolean()
 }
