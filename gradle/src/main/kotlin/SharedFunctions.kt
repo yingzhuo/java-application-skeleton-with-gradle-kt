@@ -1,4 +1,5 @@
 import org.gradle.api.Project
+import java.util.*
 
 object SharedFunctions {
 
@@ -8,7 +9,7 @@ object SharedFunctions {
 	 * 获取叶子子项目名称 <br>
 	 * 格式 :sub-project:sub-sub-project
 	 */
-	fun getLeafProjectNames(rootProject: Project): Set<String> {
+	fun getLeafProjectNames(rootProject: Project): SortedSet<String> {
 		return rootProject.allprojects
 			.filter {
 				it.subprojects.isEmpty()
@@ -16,7 +17,7 @@ object SharedFunctions {
 				it.displayName
 					.replace("project '", EMPTY_STR)
 					.replace("'", EMPTY_STR)
-			}.toSet()
+			}.toSortedSet()
 	}
 
 	/**
