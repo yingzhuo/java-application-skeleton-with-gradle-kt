@@ -1,5 +1,5 @@
 /* =====================================================================================================================
- * 跟项目专用构建逻辑，其他子项目严禁使用本逻辑
+ * 根项目专用构建逻辑，其他子项目严禁使用本逻辑
  * =================================================================================================================== */
 
 plugins {
@@ -47,19 +47,20 @@ tasks.register<DefaultTask>("deleteJar") {
 }
 
 tasks.named("build") {
+	val prevTasks = mutableSetOf<String>()
+	prevTasks.addAll(getLeafProjectNames(project).stream().map { "$it:build" }.toList())
+
 	// 保证 :build 最后运行
-	mustRunAfter(
-		getLeafProjectNames(project).stream().map { "$it:build" }.toList()
-	)
+	mustRunAfter(prevTasks)
 	finalizedBy("zipJar", "deleteJar")
 }
 
 tasks.named("clean") {
+	val prevTasks = mutableSetOf<String>()
+	prevTasks.addAll(getLeafProjectNames(project).stream().map { "$it:clean" }.toList())
 
 	// 保证 :clean 最后运行
-	mustRunAfter(
-		getLeafProjectNames(project).stream().map { "$it:clean" }.toList()
-	)
+	mustRunAfter(prevTasks)
 
 	doLast {
 		delete(
