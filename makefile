@@ -20,7 +20,7 @@ build:
 setup-gradle-wrapper:
 	@gradle wrapper
 
-github: clean
+github:
 	@git status
 	@git add .
 	@git commit -m "$(shell /bin/date "+%F %T")"

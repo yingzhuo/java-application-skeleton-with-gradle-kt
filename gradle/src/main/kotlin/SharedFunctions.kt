@@ -10,6 +10,13 @@ import java.util.*
 private const val EMPTY_STR: String = ""
 
 /**
+ * 获取时间戳
+ */
+fun getTimestamp(formatString: String = "yyyyMMddHHmmssSSS"): String {
+	return java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern(formatString))
+}
+
+/**
  * 获取叶子子项目名称 <br>
  * 格式 :sub-project:sub-sub-project
  */
