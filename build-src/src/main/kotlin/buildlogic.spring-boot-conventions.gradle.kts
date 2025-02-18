@@ -2,6 +2,7 @@
  * SpringBoot应用程序构建逻辑
  * =================================================================================================================== */
 
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
@@ -22,12 +23,13 @@ tasks.named<BootJar>("bootJar") {
 	manifest {
 		attributes(
 			mapOf(
-				"Implementation-Title" to project.name,
-				"Implementation-Version" to rootProject.version,
-				"Main-Class" to "org.springframework.boot.loader.launch.PropertiesLauncher",
-				"Start-Class" to ext.get("bootMainClass") as String
+				"Main-Class" to "org.springframework.boot.loader.launch.PropertiesLauncher"
 			)
 		)
+	}
+
+	mainClass = project.provider {
+		project.extra.get("bootMainClass") as String
 	}
 
 	includeTools = false
@@ -72,13 +74,24 @@ tasks.named<BootJar>("bootJar") {
 	)
 }
 
-tasks.named<DefaultTask>("build") {
-	doLast {
-		copy {
-			from("${layout.buildDirectory.file("libs").get()}")
-			into("${rootDir}/build")
-			include("**/*.jar")
-			exclude("**/*-sources.jar", "**/*-javadoc.jar")
+tasks.withType<BootBuildImage> {
+	enabled = false
+}
+
+springBoot {
+	buildInfo {
+		properties {
+			group.set(rootProject.group.toString())
+			artifact.set(project.name)
+			version.set(rootProject.version.toString())
+
+			additional.set(
+				mapOf(
+					"author" to "应卓"
+				)
+			)
+
+			excludes.set(setOf("name"))
 		}
 	}
 }

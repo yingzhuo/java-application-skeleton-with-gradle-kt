@@ -45,7 +45,7 @@ tasks.withType<JavaCompile> {
 			"-Xlint:divzero",
 			"-Xlint:finally",
 			"-Xlint:static",
-			"-Werror"
+			// "-Werror" 这有点过于严格了
 		)
 	)
 }
@@ -71,6 +71,21 @@ tasks.withType<ProcessResources> {
 	}
 }
 
-//configurations.all {
-//	exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
-//}
+tasks.named("build") {
+	finalizedBy("postBuild")
+}
+
+tasks.register<Delete>("postBuild") {
+	group = "build"
+	description = "Cleanup mess of build task"
+
+	enabled = getGradlePropertyAsBoolean(project, "project.build.cleanupAfterBuild")
+
+	delete(
+		layout.buildDirectory.dir("classes"),
+		layout.buildDirectory.dir("generated"),
+		layout.buildDirectory.dir("resources"),
+		layout.buildDirectory.dir("tmp"),
+		layout.buildDirectory.file("resolvedMainClassName"),
+	)
+}

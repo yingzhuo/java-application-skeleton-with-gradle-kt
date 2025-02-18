@@ -1,6 +1,7 @@
 plugins {
 	id("buildlogic.java-conventions")
 	id("buildlogic.spring-boot-conventions")
+	id("buildlogic.dist-conventions")
 }
 
 ext {

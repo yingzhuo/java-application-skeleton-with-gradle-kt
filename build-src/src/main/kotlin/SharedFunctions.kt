@@ -5,6 +5,8 @@
  */
 
 import org.gradle.api.Project
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 private const val EMPTY_STR: String = ""
@@ -13,8 +15,8 @@ private const val DEFAULT_TIMESTAMP = "yyyyMMddHHmmss"
 /**
  * 获取时间戳
  */
-fun getTimestamp(formatString: String = DEFAULT_TIMESTAMP): String {
-	return java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern(formatString))
+fun getTimestamp(formatter: String = DEFAULT_TIMESTAMP): String {
+	return LocalDateTime.now().format(DateTimeFormatter.ofPattern(formatter))
 }
 
 /**

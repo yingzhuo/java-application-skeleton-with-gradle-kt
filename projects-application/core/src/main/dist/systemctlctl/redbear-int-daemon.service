@@ -1,0 +1,24 @@
+########################################################################################################################
+# 本文件由红熊运维工程师维护
+########################################################################################################################
+
+[Unit]
+Description=Platform Integration Daemon
+Documentation=https://www.aiprb.com
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+# 运维工程师需按实际情况修改: JAVA_HOME
+Environment="JAVA_HOME=/opt/java-home-17"
+# 运维工程师需按实际情况修改: 安装目录
+Environment="APP_HOME=/opt/dist-daemon-0.1.0"
+# 运维工程师需按实际情况修改: 启动脚本目录
+ExecStart=/bin/sh /opt/dist-daemon-0.1.0/bin/startup.sh
+KillSignal=15
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
