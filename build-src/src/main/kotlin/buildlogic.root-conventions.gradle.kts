@@ -12,11 +12,5 @@ tasks.named<Wrapper>("wrapper") {
 
 tasks.named("clean") {
 	mustRunAfter(getLeafProjectNames(rootProject).map { "${it}:clean" })
-	delete(layout.projectDirectory.dir("gradle/.kotlin"))
-
-	if (getGradlePropertyAsBoolean(project, "project.clean.cleanBuildSourceDir", false)) {
-		delete(layout.projectDirectory.dir("gradle/.gradle"))
-		delete(layout.projectDirectory.dir("gradle/build"))
-	}
-
+	delete(layout.projectDirectory.dir("build-src/.kotlin"))
 }

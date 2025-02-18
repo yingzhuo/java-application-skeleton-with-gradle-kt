@@ -1,10 +1,8 @@
 #!/bin/sh
-########################################################################################################################
-# 本文件由红熊运维工程师维护
-# 如有需要可修改和添加若干Java虚拟机参数
-########################################################################################################################
 
 export JAVA="${JAVA_HOME}/bin/java"
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+BASE_DIR="${SCRIPT_DIR}/.."
 
 JAVA_OPT="${JAVA_OPT} -server -Xmixed"
 JAVA_OPT="${JAVA_OPT} -XX:-PrintCommandLineFlags -XX:-PrintFlagsInitial -XX:-PrintFlagsFinal"
@@ -17,15 +15,13 @@ JAVA_OPT="${JAVA_OPT} -XX:+UsePerfData"
 
 JAVA_OPT_EXT="${JAVA_OPT_EXT} -Djava.security.egd=file:/dev/./urandom"
 JAVA_OPT_EXT="${JAVA_OPT_EXT} -Dloader.system=false"
-JAVA_OPT_EXT="${JAVA_OPT_EXT} -Dloader.home=${APP_HOME}"
-JAVA_OPT_EXT="${JAVA_OPT_EXT} -Dloader.path=${APP_HOME}/lib,${APP_HOME}/config"
+JAVA_OPT_EXT="${JAVA_OPT_EXT} -Dloader.path=${BASE_DIR}/lib,${BASE_DIR}/config"
 JAVA_OPT_EXT="${JAVA_OPT_EXT} -Dspring.config.name=application"
-JAVA_OPT_EXT="${JAVA_OPT_EXT} -Dspring.config.additional-location=file:${APP_HOME}/config/"
-JAVA_OPT_EXT="${JAVA_OPT_EXT} -Dlogging.config=${APP_HOME}/config/logback.xml"
+JAVA_OPT_EXT="${JAVA_OPT_EXT} -Dspring.config.additional-location=file:${BASE_DIR}/config/"
+JAVA_OPT_EXT="${JAVA_OPT_EXT} -Dlogging.config=${BASE_DIR}/config/logback.xml"
 
 ${JAVA} \
   ${JAVA_OPT} \
   ${JAVA_OPT_EXT} \
-  -cp ${APP_HOME}/lib/daemon.jar \
-  org.springframework.boot.loader.launch.PropertiesLauncher \
+  -jar "${BASE_DIR}/lib/core.jar" \
   --spring.profiles.active=prod
