@@ -68,7 +68,10 @@ tasks.register<Delete>("postDist") {
 
 	enabled = getGradlePropertyAsBoolean(project, "project.build.cleanupAfterDist")
 
-	delete(layout.buildDirectory.dir("libs"))
-	delete(layout.buildDirectory.file(project.extra.get("distFilename") as String))
+	delete(
+		layout.buildDirectory.dir("libs"),
+		layout.buildDirectory.dir("dist"),
+		layout.buildDirectory.file(project.extra.get("distFilename") as String)
+	)
 
 }

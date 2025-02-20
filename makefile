@@ -2,6 +2,7 @@ usage:
 	@echo '==============================================================================================================='
 	@echo 'usage                       :     显示本菜单'
 	@echo 'clean                       :     清理本项目'
+	@echo 'clean-build-source          :     清理构建逻辑'
 	@echo 'compile                     :     编译项目'
 	@echo 'build                       :     构建项目'
 	@echo 'dist                        :     发布项目'
@@ -14,6 +15,9 @@ usage:
 clean:
 	@$(CURDIR)/gradlew --quiet -p $(CURDIR) clean
 	@#$(CURDIR)/gradlew --quiet -p $(CURDIR)/build-src clean
+
+clean-build-source:
+	@$(CURDIR)/gradlew --quiet -p $(CURDIR)/build-src clean
 
 compile:
 	@$(CURDIR)/gradlew classes
@@ -38,4 +42,4 @@ github:
 	@git add .
 	@git commit -m "$(shell /bin/date "+%F %T")"
 
-.PHONY: usage clean compile build dist test setup-gradle-wrapper dependencies github
+.PHONY: usage clean clean-build-source compile build dist test setup-gradle-wrapper dependencies github
