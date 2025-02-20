@@ -13,7 +13,7 @@ usage:
 
 clean:
 	@$(CURDIR)/gradlew --quiet -p $(CURDIR) clean
-	@#$(CURDIR)/gradlew --quiet -p $(CURDIR)/gradle clean
+	@#$(CURDIR)/gradlew --quiet -p $(CURDIR)/build-src clean
 
 compile:
 	@$(CURDIR)/gradlew classes
