@@ -1,8 +1,6 @@
-/*
- * ---------------------------------------------------------------------------------------------------------------------
- * 构建逻辑共享函数
- * ---------------------------------------------------------------------------------------------------------------------
- */
+/* =====================================================================================================================
+ * 构建逻辑的共享函数
+ * =================================================================================================================== */
 
 import org.gradle.api.Project
 import java.time.LocalDateTime
@@ -10,13 +8,13 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 private const val EMPTY_STR: String = ""
-private const val DEFAULT_TIMESTAMP = "yyyyMMddHHmmss"
+private const val DEFAULT_TIMESTAMP_FORMAT_PATTERN = "yyyyMMddHHmmss"
 
 /**
  * 获取时间戳
  */
-fun getTimestamp(formatter: String = DEFAULT_TIMESTAMP): String {
-	return LocalDateTime.now().format(DateTimeFormatter.ofPattern(formatter))
+fun getTimestamp(formatPattern: String = DEFAULT_TIMESTAMP_FORMAT_PATTERN): String {
+	return LocalDateTime.now().format(DateTimeFormatter.ofPattern(formatPattern))
 }
 
 /**
