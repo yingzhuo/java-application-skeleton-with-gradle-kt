@@ -4,7 +4,8 @@ plugins {
 
 dependencies {
 
-	implementation(project(":projects-library:utility"))
+	// 其他子项目
+	api(project(":projects-library:utility"))
 
 	// spring-boot & spring
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -26,4 +27,5 @@ dependencies {
 
 	// slf4j
 	implementation("org.slf4j:slf4j-api")
+
 }

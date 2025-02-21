@@ -11,8 +11,8 @@ ext {
 dependencies {
 
 	// 其他子项目
-	implementation(project(":projects-library:utility"))
-	implementation(project(":projects-library:springboot-starter"))
+	api(project(":projects-library:utility"))
+	api(project(":projects-library:springboot-starter"))
 
 	// spring-boot & spring-core
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -27,4 +27,5 @@ dependencies {
 
 	// slf4j
 	implementation("org.slf4j:slf4j-api")
+
 }

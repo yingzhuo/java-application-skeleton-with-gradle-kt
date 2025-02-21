@@ -10,7 +10,7 @@ Here is another skeleton of [Groovy DSL](https://github.com/yingzhuo/java-applic
 |------------|---------|
 | JDK        | 17      |
 | Gradle     | 8.12.1  |
-| SpringBoot | 3.4.2   |
+| SpringBoot | 3.4.3   |
 
 ### Gradle Plugins
 
