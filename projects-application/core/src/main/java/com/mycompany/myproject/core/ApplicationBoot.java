@@ -1,23 +1,19 @@
 package com.mycompany.myproject.core;
 
-import com.mycompany.myproject.utility.Constants;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
 
 @Slf4j
+@RequiredArgsConstructor
 @SpringBootApplication
-public class ApplicationBoot implements ApplicationRunner {
+@ImportResource("classpath*:config/*.groovy")
+public class ApplicationBoot {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApplicationBoot.class, args);
-	}
-
-	@Override
-	public void run(ApplicationArguments args) {
-		log.debug(Constants.HELLO_WORLD);
 	}
 
 }
