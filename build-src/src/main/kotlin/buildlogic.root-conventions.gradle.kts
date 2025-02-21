@@ -17,6 +17,9 @@ tasks.named("clean") {
 
 tasks.register<DefaultTask>("addJavaLicenseHeader") {
 
+	group = "license"
+	description = "Adds a license header for the Java source files"
+
 	var header = file(layout.projectDirectory.file(".license_headers/java.txt")).readText()
 	if (!header.endsWith("\n")) {
 		header += "\n"
