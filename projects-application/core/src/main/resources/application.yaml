@@ -1,3 +1,8 @@
+spring:
+  main:
+    sources:
+      - "classpath:config/groovy-dsl.groovy"
+
 logging:
   level:
     root: info
