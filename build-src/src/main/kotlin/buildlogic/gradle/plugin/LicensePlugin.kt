@@ -34,10 +34,10 @@ open class LicensePlugin : Plugin<Project> {
 			project.fileTree(project.rootDir) {
 				include("**/*.java")
 			}.forEach { file ->
-				var content = file.readText(Charsets.UTF_8)
+				var content = file.readText()
 				if (!content.startsWith(javaHeader)) {
 					content = javaHeader + content
-					file.writeText(content, Charsets.UTF_8)
+					file.writeText(content)
 				}
 			}
 		}
