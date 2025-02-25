@@ -16,12 +16,12 @@ open class LicensePlugin : Plugin<Project> {
 
 	open class AddLicenseHeaderTask @Inject constructor(private val project: Project) : DefaultTask() {
 		companion object {
-			const val TASK_NAME = "addLicenseHeader"
+			const val TASK_NAME: String = "addLicenseHeader"
 		}
 
 		init {
-			group = "license"
-			description = "Adds a license header for source codes"
+			this.group = "license"
+			this.description = "Adds a license header for source codes"
 		}
 
 		@TaskAction
