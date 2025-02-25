@@ -7,7 +7,12 @@ plugins {
 }
 
 tasks.named<Wrapper>("wrapper") {
-	distributionUrl = getGradleProperty(project, "project.gradle-wrapper.distributionUrl")
+	val propertyName = "project.gradle-wrapper.distributionUrl"
+	val url = getGradleProperty(project, propertyName, "<no value>")
+	if (url == "<no value>") {
+		throw StopExecutionException("配置问题: '$propertyName' 配置缺失")
+	}
+	distributionUrl = url
 }
 
 tasks.named("clean") {
