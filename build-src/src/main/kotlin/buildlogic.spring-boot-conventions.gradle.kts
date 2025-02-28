@@ -1,7 +1,6 @@
 /* =====================================================================================================================
  * SpringBoot应用程序构建逻辑
  * =================================================================================================================== */
-
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
@@ -16,14 +15,13 @@ tasks.named<Jar>("jar") {
 }
 
 tasks.named<BootJar>("bootJar") {
-	enabled = true
 
 	archiveFileName = "${project.name}-${rootProject.version}.jar"
 
 	manifest {
 		attributes(
 			mapOf(
-				"Main-Class" to "org.springframework.boot.loader.launch.PropertiesLauncher"
+				"Main-Class" to "org.springframework.boot.loader.launch.PropertiesLauncher",
 			)
 		)
 	}

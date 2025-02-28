@@ -7,11 +7,7 @@ plugins {
 }
 
 tasks.named<Wrapper>("wrapper") {
-	val propertyName = "project.gradle-wrapper.distributionUrl"
-	val url = getGradleProperty(project, propertyName, "<no value>")
-	if (url == "<no value>") {
-		throw StopExecutionException("配置问题: '$propertyName' 配置缺失")
-	}
+	val url = "https://mirrors.cloud.tencent.com/gradle/gradle-${properties["project.gradle-wrapper.version"]}-bin.zip"
 	distributionUrl = url
 }
 
