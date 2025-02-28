@@ -2,13 +2,14 @@ package com.mycompany.myproject.core
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.context.annotation.ImportResource
+import org.springframework.context.support.beans
 
-@ImportResource("classpath:config/groovy-dsl.groovy")
 @SpringBootApplication
-open class ApplicationBoot
+class ApplicationBoot
 
 fun main(args: Array<String>) {
-	println(Constants1.HELLO)
-	runApplication<ApplicationBoot>(*args)
+	runApplication<ApplicationBoot>(*args) {
+		addInitializers(beans {
+		})
+	}
 }

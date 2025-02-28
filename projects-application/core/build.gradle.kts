@@ -20,7 +20,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
 	// groovy
-	implementation("org.apache.groovy:groovy")
+	// implementation("org.apache.groovy:groovy")
 
 	// jackson
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
