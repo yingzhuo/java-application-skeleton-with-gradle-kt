@@ -79,7 +79,7 @@ tasks.register<Delete>("postBuild") {
 	group = "build"
 	description = "Cleanup mess of build task"
 
-	enabled = getGradlePropertyAsBoolean(project, "project.build.cleanupAfterBuild")
+	enabled = getConfig(project, "project.build.cleanupAfterBuild").toBoolean()
 
 	delete(
 		layout.buildDirectory.dir("classes"),

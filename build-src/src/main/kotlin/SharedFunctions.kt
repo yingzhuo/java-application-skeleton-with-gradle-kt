@@ -2,6 +2,7 @@
  * 构建逻辑的共享函数
  * =================================================================================================================== */
 
+import org.gradle.api.GradleException
 import org.gradle.api.Project
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -34,38 +35,19 @@ fun getLeafProjectNames(rootProject: Project): SortedSet<String> {
 }
 
 /**
- * 获取gradle.properties文件配置
+ * 尝试读取配置
+ * gradle.properties | env
  */
-fun getGradleProperty(
-	project: Project,
-	propertyName: String,
-	defaultPropertyValue: String = "<no value>"
-): String {
-	return project.providers.gradleProperty(propertyName).orElse(defaultPropertyValue).get()
-}
-
-/**
- * 获取gradle.properties文件配置 (boolean类型)
- */
-fun getGradlePropertyAsBoolean(
-	project: Project,
-	propertyName: String,
-	defaultValue: Boolean = false
-): Boolean {
-	return getGradleProperty(project, propertyName, defaultValue.toString()).toBoolean()
-}
-
-/**
- * 获取环境变量
- */
-fun getEnv(name: String, defaultValue: String = "<no value>"): String {
-	return Optional.ofNullable(System.getenv(name))
-		.orElse(defaultValue)
-}
-
-/**
- * 获取环境变量 (boolean类型)
- */
-fun getEnvAsBoolean(name: String, defaultValue: Boolean = false): Boolean {
-	return getEnv(name, defaultValue.toString()).toBoolean()
+fun getConfig(project: Project, name: String, defaultValue: String? = null): String {
+	var value = project.properties[name]
+	if (value == null) {
+		value = System.getenv(name)
+	}
+	if (value == null) {
+		value = defaultValue
+	}
+	if (value == null) {
+		throw GradleException("\"$name\" has no value defined")
+	}
+	return value.toString()
 }

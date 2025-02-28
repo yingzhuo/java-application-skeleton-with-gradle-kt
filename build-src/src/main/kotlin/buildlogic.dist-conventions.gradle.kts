@@ -66,7 +66,7 @@ tasks.register<Delete>("postDist") {
 	group = "build"
 	description = "Cleanup mess of dist task"
 
-	enabled = getGradlePropertyAsBoolean(project, "project.build.cleanupAfterDist")
+	enabled = getConfig(project, "project.build.cleanupAfterDist").toBoolean()
 
 	delete(
 		layout.buildDirectory.dir("libs"),
