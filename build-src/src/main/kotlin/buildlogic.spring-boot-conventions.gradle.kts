@@ -26,10 +26,6 @@ tasks.named<BootJar>("bootJar") {
 		)
 	}
 
-	mainClass = project.provider {
-		project.extra.get("bootMainClass") as String
-	}
-
 	includeTools = false
 
 	layered {

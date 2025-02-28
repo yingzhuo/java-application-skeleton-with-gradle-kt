@@ -1,11 +1,8 @@
 plugins {
 	id("buildlogic.java-conventions")
+	id("buildlogic.kotlin-conventions")
 	id("buildlogic.spring-boot-conventions")
 	id("buildlogic.dist-conventions")
-}
-
-ext {
-	set("bootMainClass", "com.mycompany.myproject.core.ApplicationBoot")
 }
 
 dependencies {
@@ -18,8 +15,15 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 
+	// kotlin
+	implementation("org.jetbrains.kotlin:kotlin-stdlib")
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+
 	// groovy
 	implementation("org.apache.groovy:groovy")
+
+	// jackson
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 	// lombok
 	compileOnly("org.projectlombok:lombok")
