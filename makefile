@@ -8,25 +8,25 @@ usage:
 	@echo 'dist                        :     发布项目'
 	@echo 'test                        :     执行单元测试'
 	@echo 'dependencies                :     分析若干模块依赖关系'
-	@echo 'add-license-header          :     加入许可证头信息'
+	@echo 'add-license-header          :     为java文件加入许可证头信息'
 	@echo 'setup-gradle-wrapper        :     设置gradle-wrapper'
 	@echo 'github                      :     提交文件'
 	@echo '==============================================================================================================='
 
 clean:
-	@$(CURDIR)/gradlew --quiet -p $(CURDIR) clean
+	@$(CURDIR)/gradlew -q -p $(CURDIR) clean
 
 clean-build-source:
-	@$(CURDIR)/gradlew --quiet -p $(CURDIR)/build-src clean
+	@$(CURDIR)/gradlew -q -p $(CURDIR)/build-src clean
 
 compile:
 	@$(CURDIR)/gradlew classes
 
 build:
-	@$(CURDIR)/gradlew -x test build
+	@$(CURDIR)/gradlew -x 'test' -x 'check' build
 
 dist:
-	@$(CURDIR)/gradlew -x test dist
+	@$(CURDIR)/gradlew -x 'test' -x 'check' dist
 
 test:
 	@$(CURDIR)/gradlew test
