@@ -30,9 +30,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "java-application-skeleton-with-gradle-kt"
 
-// 构建逻辑
-includeBuild("build-src")
-
 // 项目
 include("projects-application:core")
 include("projects-library:utility")

@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-	val kotlinVersion: String  = "1.9.25"
+	val kotlinVersion = "1.9.25"
 	implementation("org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin:${kotlinVersion}")
 	implementation("org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin:${kotlinVersion}")
 	implementation("org.jetbrains.kotlin.plugin.jpa:org.jetbrains.kotlin.plugin.jpa.gradle.plugin:${kotlinVersion}")
