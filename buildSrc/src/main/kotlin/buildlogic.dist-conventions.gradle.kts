@@ -73,5 +73,4 @@ tasks.register<Delete>("postDist") {
 		layout.buildDirectory.dir("dist"),
 		layout.buildDirectory.file(project.extra.get("distFilename") as String)
 	)
-
 }

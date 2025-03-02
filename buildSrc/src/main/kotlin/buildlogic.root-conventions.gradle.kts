@@ -13,5 +13,8 @@ tasks.named<Wrapper>("wrapper") {
 
 tasks.named("clean") {
 	mustRunAfter(getLeafProjectNames(rootProject).map { "${it}:clean" })
-	delete(layout.projectDirectory.dir("build-src/.kotlin"))
+	delete(
+		layout.projectDirectory.dir(".kotlin"),
+		layout.projectDirectory.dir("buildSrc/.kotlin")
+	)
 }
