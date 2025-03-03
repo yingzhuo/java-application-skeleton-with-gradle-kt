@@ -22,12 +22,13 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.StopExecutionException
 import org.gradle.api.tasks.TaskAction
+import java.io.Serializable
 import javax.inject.Inject
 
 open class LicensePlugin : Plugin<Project> {
 
 	override fun apply(project: Project) {
-		project.extensions.add(AddLicenseHeaderTask.TASK_NAME, Config(javaHeader = null))
+		project.extensions.add(AddLicenseHeaderTask.TASK_NAME, PluginConfig(javaHeader = null))
 		project.tasks.register(AddLicenseHeaderTask.TASK_NAME, AddLicenseHeaderTask::class.java, project)
 	}
 
@@ -43,7 +44,7 @@ open class LicensePlugin : Plugin<Project> {
 
 		@TaskAction
 		fun execute() {
-			val config = this.project.extensions.getByName(TASK_NAME) as Config
+			val config = this.project.extensions.getByName(TASK_NAME) as PluginConfig
 			var javaHeader = config.javaHeader
 
 			if (javaHeader.isNullOrBlank()) {
@@ -83,6 +84,8 @@ open class LicensePlugin : Plugin<Project> {
 		}
 	}
 
-	open class Config(var javaHeader: String?)
+	open class PluginConfig(
+		var javaHeader: String?
+	) : Serializable
 
 }
