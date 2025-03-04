@@ -28,7 +28,7 @@ ext {
 }
 
 tasks.register<Copy>("preDistCopy") {
-	dependsOn("build")
+	dependsOn("assemble")
 
 	group = "build"
 	description = "Copy files to dist-directory"
