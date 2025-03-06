@@ -67,7 +67,6 @@ tasks.register<Tar>("preDistCompression") {
 
 tasks.register<Copy>("dist") {
 	dependsOn("preDistCompression")
-	finalizedBy("postDist")
 
 	group = "build"
 	description = "Copy dist-file to root project build directory"
@@ -77,17 +76,4 @@ tasks.register<Copy>("dist") {
 	}
 
 	destinationDir = file("${rootDir}/build")
-}
-
-tasks.register<Delete>("postDist") {
-	group = "build"
-	description = "Cleanup mess of dist task"
-
-	enabled = getConfig(project, "project.build.cleanupAfterDist").toBoolean()
-
-	delete(
-		layout.buildDirectory.dir("libs"),
-		layout.buildDirectory.dir("dist"),
-		layout.buildDirectory.file(project.extra.get("distFilename") as String)
-	)
 }
