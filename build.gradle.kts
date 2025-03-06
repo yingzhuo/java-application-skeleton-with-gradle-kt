@@ -7,9 +7,7 @@ ext {
 	// SpringBoot BOM 版本微调
 	// https://docs.spring.io/spring-boot/appendix/dependency-versions/coordinates.html
 	// https://docs.spring.io/spring-boot/appendix/dependency-versions/properties.html
-
-	// 项目相关配置
-	// set('foo', 'foo')
+	// set("xxx", "v1.0.0")
 }
 
 group = "com.mycompany.myproject"
