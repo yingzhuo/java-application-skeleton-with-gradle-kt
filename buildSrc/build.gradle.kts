@@ -23,8 +23,11 @@ plugins {
 
 val props = Properties()
 props.load(file("../gradle.properties").inputStream())
-props.forEach { name, value ->
-	extra.set(name.toString(), value)
+props.forEach { key, value ->
+	val name = key.toString()
+	if (name.endsWith("Version")) {
+		extra.set(name, value)
+	}
 }
 
 dependencies {
