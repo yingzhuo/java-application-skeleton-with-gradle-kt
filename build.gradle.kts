@@ -10,9 +10,12 @@ ext {
 	// set("xxx", "v1.0.0")
 }
 
-group = "com.mycompany.myproject"
-version = "1.0.0"
-description = "xxx"
+defaultTasks("dist")
+
+allprojects {
+	group = "com.mycompany.myproject"
+	version = "1.0.0"
+}
 
 addLicenseHeader {
 	javaHeader = """

@@ -21,13 +21,17 @@ plugins {
 	`kotlin-dsl`
 }
 
-val props = Properties()
-props.load(file("../gradle.properties").inputStream())
-props.forEach { key, value ->
-	val name = key.toString()
-	if (name.endsWith("Version")) {
-		extra.set(name, value)
+ext {
+	val reader = file("../gradle.properties").reader(Charsets.UTF_8)
+	val props = Properties()
+	props.load(reader)
+	props.forEach { key, value ->
+		val name = key.toString()
+		if (name.endsWith(suffix = "version", ignoreCase = true)) {
+			set(name, value)
+		}
 	}
+	reader.close()
 }
 
 dependencies {
