@@ -1,5 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-
 pluginManagement {
 	repositories {
 		mavenLocal()
@@ -13,6 +11,7 @@ pluginManagement {
 	}
 }
 
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
 	repositories {
 		mavenLocal()
@@ -32,7 +31,18 @@ dependencyResolutionManagement {
 
 rootProject.name = "java-application-skeleton-with-gradle-kt"
 
-// 项目
-include("projects-application:core")
-include("projects-library:utility")
-include("projects-library:springboot-starter")
+// 子项目
+fun includeSubprojects(vararg directories: File): Unit {
+	for (dir in directories) {
+		dir.listFiles()?.forEach { subFile ->
+			if (subFile.isDirectory) {
+				include("${dir.name}:${subFile.name}")
+			}
+		}
+	}
+}
+
+includeSubprojects(
+	file("projects-application"),
+	file("projects-library")
+)
