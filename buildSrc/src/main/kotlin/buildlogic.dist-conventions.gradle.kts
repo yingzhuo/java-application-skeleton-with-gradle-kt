@@ -83,6 +83,9 @@ tasks.register<Delete>("postDist") {
 	group = "build"
 	description = "Cleanup dist-files"
 
-	enabled = false
-	delete(layout.buildDirectory)
+	delete(
+		layout.buildDirectory.files(project.extra.get("distFilename") as String),
+		layout.buildDirectory.dir("dist"),
+		layout.buildDirectory.dir("kotlin"),
+	)
 }

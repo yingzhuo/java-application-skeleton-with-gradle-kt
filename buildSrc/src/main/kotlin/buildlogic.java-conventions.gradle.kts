@@ -87,22 +87,3 @@ tasks.withType<ProcessResources> {
 		exclude("**/.gitkeep")
 	}
 }
-
-tasks.named("build") {
-	finalizedBy("postBuild")
-}
-
-tasks.register<Delete>("postBuild") {
-	group = "build"
-	description = "Cleanup mess of build task"
-
-	enabled = getConfig(project, "project.build.cleanupAfterBuild").toBoolean()
-
-	delete(
-		layout.buildDirectory.dir("classes"),
-		layout.buildDirectory.dir("generated"),
-		layout.buildDirectory.dir("resources"),
-		layout.buildDirectory.dir("tmp"),
-		layout.buildDirectory.file("resolvedMainClassName"),
-	)
-}
