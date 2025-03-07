@@ -1,3 +1,5 @@
+import java.io.FileFilter
+
 pluginManagement {
 	repositories {
 		mavenLocal()
@@ -32,17 +34,19 @@ dependencyResolutionManagement {
 rootProject.name = "java-application-skeleton-with-gradle-kt"
 
 // 子项目
-fun includeSubprojects(vararg directories: File): Unit {
-	for (dir in directories) {
-		dir.listFiles()?.forEach { subFile ->
-			if (subFile.isDirectory) {
-				include("${dir.name}:${subFile.name}")
-			}
-		}
-	}
-}
-
 includeSubprojects(
 	file("projects-application"),
 	file("projects-library")
 )
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+private fun includeSubprojects(vararg directories: File): Unit {
+	val dirPredicate = FileFilter { f -> f.isDirectory }
+
+	for (dir in directories) {
+		dir.listFiles(dirPredicate)?.forEach { subFile ->
+			include("${dir.name}:${subFile.name}")
+		}
+	}
+}

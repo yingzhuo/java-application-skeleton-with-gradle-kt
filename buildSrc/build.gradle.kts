@@ -44,9 +44,9 @@ dependencies {
 	implementation("org.jetbrains.kotlin.plugin.allopen:org.jetbrains.kotlin.plugin.allopen.gradle.plugin:${project.extra["kotlinVersion"]}")
 
 	// 其他
+	implementation("org.springframework.boot:spring-boot-gradle-plugin:${project.extra["springBootVersion"]}")
 	implementation("io.spring.gradle:dependency-management-plugin:${project.extra["dependencyManagementPluginVersion"]}")
 	implementation("com.gorylenko.gradle-git-properties:gradle-git-properties:${project.extra["gitPluginVersion"]}")
-	implementation("org.springframework.boot:spring-boot-gradle-plugin:${project.extra["springBootVersion"]}")
 }
 
 gradlePlugin {
