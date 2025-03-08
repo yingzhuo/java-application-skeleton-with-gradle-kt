@@ -4,10 +4,15 @@ pluginManagement {
 	repositories {
 		mavenLocal()
 		gradlePluginPortal()
-		maven { name = "阿里云"; url = uri("https://maven.aliyun.com/repository/public/") }
-		maven { name = "腾讯云"; url = uri("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
-		maven { name = "华为云"; url = uri("https://repo.huaweicloud.com/repository/maven/") }
-		maven { name = "网易云"; url = uri("https://mirrors.163.com/maven/repository/maven-public/") }
+
+		file("buildSrc/config/maven/repositories.txt")
+			.readLines(Charsets.UTF_8)
+			.forEach { line ->
+				if (line.isNotBlank()) {
+					maven { url = uri(line.trim()); isAllowInsecureProtocol = true }
+				}
+			}
+
 		mavenCentral()
 		google()
 	}
@@ -17,13 +22,15 @@ pluginManagement {
 dependencyResolutionManagement {
 	repositories {
 		mavenLocal()
-		maven { name = "阿里云"; url = uri("https://maven.aliyun.com/repository/public/") }
-		maven { name = "腾讯云"; url = uri("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
-		maven { name = "华为云"; url = uri("https://repo.huaweicloud.com/repository/maven/") }
-		maven { name = "网易云"; url = uri("https://mirrors.163.com/maven/repository/maven-public/") }
-		maven { name = "Spring(GA)"; url = uri("https://repo.spring.io/release") }
-		maven { name = "Spring(Milestone)"; url = uri("https://repo.spring.io/milestone") }
-		maven { name = "Spring(Snapshot)"; url = uri("https://repo.spring.io/snapshot") }
+
+		file("buildSrc/config/maven/repositories.txt")
+			.readLines(Charsets.UTF_8)
+			.forEach { line ->
+				if (line.isNotBlank()) {
+					maven { url = uri(line.trim()); isAllowInsecureProtocol = true }
+				}
+			}
+
 		mavenCentral()
 		google()
 	}
