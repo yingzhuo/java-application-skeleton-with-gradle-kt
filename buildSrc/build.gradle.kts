@@ -21,20 +21,15 @@ plugins {
 	`kotlin-dsl`
 }
 
-ext {
-	file("${rootDir}/../gradle.properties")
-		.reader(Charsets.ISO_8859_1)
-		.use { reader ->
-			val props = Properties()
-			props.load(reader)
-			props.forEach { key, value ->
-				val name = key.toString()
-				if (name.endsWith(suffix = "version", ignoreCase = true)) {
-					set(name, value)
-				}
-			}
+file("${rootDir}/../gradle.properties")
+	.inputStream()
+	.use {
+		val properties = Properties()
+		properties.load(it)
+		properties.forEach { key, value ->
+			ext.set(key.toString(), value.toString())
 		}
-}
+	}
 
 dependencies {
 	// kotlin

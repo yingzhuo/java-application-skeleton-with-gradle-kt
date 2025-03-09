@@ -41,6 +41,7 @@ dependencyResolutionManagement {
 
 	repositories {
 		mavenLocal()
+		gradlePluginPortal()
 
 		file("config/maven/repositories.txt")
 			.readLines(Charsets.UTF_8)
