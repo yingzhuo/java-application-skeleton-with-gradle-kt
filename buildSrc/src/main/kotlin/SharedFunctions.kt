@@ -21,6 +21,9 @@
 
 import org.gradle.api.GradleException
 import org.gradle.api.Project
+import java.io.File
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -67,4 +70,12 @@ fun getConfig(project: Project, name: String, defaultValue: String? = null): Str
 		throw GradleException("\"$name\" has no value defined")
 	}
 	return value.toString()
+}
+
+fun mkdir(dir: File): Unit {
+	dir.mkdirs()
+}
+
+fun copy(src: File, dest: File): Unit {
+	Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING)
 }
