@@ -18,7 +18,6 @@
 pluginManagement {
 	repositories {
 		mavenLocal()
-		gradlePluginPortal()
 
 		file("config/maven/repositories.txt")
 			.readLines(Charsets.UTF_8)
@@ -28,6 +27,7 @@ pluginManagement {
 				}
 			}
 
+		gradlePluginPortal()
 		mavenCentral()
 		google()
 	}
@@ -36,7 +36,9 @@ pluginManagement {
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
 	versionCatalogs {
-		create("libs") { from(files("../gradle/libs.versions.toml")) }
+		create("libs") {
+			from(files("../gradle/libs.versions.toml"))
+		}
 	}
 
 	repositories {
