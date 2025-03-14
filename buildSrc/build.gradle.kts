@@ -42,6 +42,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-gradle-plugin:${project.extra["springBootVersion"]}")
 	implementation("io.spring.gradle:dependency-management-plugin:${project.extra["dependencyManagementPluginVersion"]}")
 	implementation("com.gorylenko.gradle-git-properties:gradle-git-properties:${project.extra["gitPluginVersion"]}")
+	implementation("com.gradleup.shadow:com.gradleup.shadow.gradle.plugin:${project.extra["shadowPluginVersion"]}")
 }
 
 gradlePlugin {

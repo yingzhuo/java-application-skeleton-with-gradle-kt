@@ -32,11 +32,11 @@ dependencyManagement {
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+	sourceCompatibility = JavaVersion.toVersion("${project.ext["javaVersion"]}")
+	targetCompatibility = JavaVersion.toVersion("${project.ext["javaVersion"]}")
 
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+		languageVersion = JavaLanguageVersion.of("${project.ext["javaVersion"]}")
 	}
 
 	// withSourcesJar()
@@ -62,7 +62,7 @@ tasks.withType<JavaCompile> {
 			"-Xlint:divzero",
 			"-Xlint:finally",
 			"-Xlint:static",
-			// "-Werror" 这有点过于严格了
+			"-Werror"
 		)
 	)
 }

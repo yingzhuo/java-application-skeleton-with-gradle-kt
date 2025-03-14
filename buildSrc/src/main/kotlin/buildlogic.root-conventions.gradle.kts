@@ -27,7 +27,7 @@ tasks.named<Wrapper>("wrapper") {
 	// 国内镜像两个比较好的选择
 	// (1) 腾讯云: https://mirrors.cloud.tencent.com/gradle/gradle-${gradleVersion}-bin.zip
 	// (2) 华为云: https://mirrors.huaweicloud.com/gradle/gradle-${gradleVersion}-bin.zip
-	distributionUrl = "https://mirrors.cloud.tencent.com/gradle/gradle-$gradleVersion-bin.zip"
+	distributionUrl = "https://mirrors.cloud.tencent.com/gradle/gradle-${gradleVersion}-bin.zip"
 }
 
 tasks.named("clean") {
