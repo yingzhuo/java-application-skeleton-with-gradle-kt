@@ -83,6 +83,7 @@ tasks.withType<ProcessResources> {
 				"**/*.pem",
 				"**/*.p12",
 				"**/*.pfx",
+				"**/*.lua"
 			)
 		)
 		exclude("**/.DS_Store")
