@@ -30,6 +30,11 @@ tasks.named<Wrapper>("wrapper") {
 	distributionUrl = "https://mirrors.cloud.tencent.com/gradle/gradle-${gradleVersion}-bin.zip"
 }
 
+tasks.register<Exec>("github") {
+	workingDir("$rootDir")
+	commandLine("bash", "$rootDir/buildSrc/config/github/push.sh")
+}
+
 tasks.named("clean") {
 	mustRunAfter(getLeafProjectNames(rootProject).map { "${it}:clean" })
 	delete(
