@@ -32,12 +32,6 @@ file("${rootDir}/../gradle.properties")
 	}
 
 dependencies {
-	// kotlin
-	implementation("org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin:${project.extra["kotlinVersion"]}")
-	implementation("org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin:${project.extra["kotlinVersion"]}")
-	implementation("org.jetbrains.kotlin.plugin.jpa:org.jetbrains.kotlin.plugin.jpa.gradle.plugin:${project.extra["kotlinVersion"]}")
-	implementation("org.jetbrains.kotlin.plugin.allopen:org.jetbrains.kotlin.plugin.allopen.gradle.plugin:${project.extra["kotlinVersion"]}")
-
 	// 其他
 	implementation("org.springframework.boot:spring-boot-gradle-plugin:${project.extra["springBootVersion"]}")
 	implementation("io.spring.gradle:dependency-management-plugin:${project.extra["dependencyManagementPluginVersion"]}")

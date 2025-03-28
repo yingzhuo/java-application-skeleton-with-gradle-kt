@@ -15,18 +15,26 @@
  * limitations under the License.
  *
  */
-package com.mycompany.myproject.core
+package com.mycompany.myproject.core;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
-import org.springframework.context.support.beans
+import com.mycompany.myproject.utility.Constants;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@Slf4j
 @SpringBootApplication
-class ApplicationBoot
+public class ApplicationBoot implements ApplicationRunner {
 
-fun main(args: Array<String>) {
-	runApplication<ApplicationBoot>(*args) {
-		addInitializers(beans {
-		})
+	public static void main(String[] args) {
+		SpringApplication.run(ApplicationBoot.class, args);
 	}
+
+	@Override
+	public void run(ApplicationArguments args) {
+		log.debug(Constants.HELLO_WORLD);
+	}
+
 }

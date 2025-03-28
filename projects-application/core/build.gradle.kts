@@ -1,6 +1,5 @@
 plugins {
 	id("buildlogic.java-conventions")
-	id("buildlogic.kotlin-conventions")
 	id("buildlogic.spring-boot-conventions")
 }
 
