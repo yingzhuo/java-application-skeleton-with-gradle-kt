@@ -6,8 +6,9 @@ pluginManagement {
 		file("buildSrc/config/maven/repositories.txt")
 			.readLines(Charsets.UTF_8)
 			.forEach { line ->
-				if (line.isNotBlank()) {
-					maven { url = uri(line.trim()); isAllowInsecureProtocol = true }
+				val mirror = line.trim()
+				if (mirror.isNotBlank() && !mirror.startsWith("#")) {
+					maven { url = uri(mirror); isAllowInsecureProtocol = true }
 				}
 			}
 
@@ -24,8 +25,9 @@ dependencyResolutionManagement {
 		file("buildSrc/config/maven/repositories.txt")
 			.readLines(Charsets.UTF_8)
 			.forEach { line ->
-				if (line.isNotBlank()) {
-					maven { url = uri(line.trim()); isAllowInsecureProtocol = true }
+				val mirror = line.trim()
+				if (mirror.isNotBlank() && !mirror.startsWith("#")) {
+					maven { url = uri(mirror); isAllowInsecureProtocol = true }
 				}
 			}
 
