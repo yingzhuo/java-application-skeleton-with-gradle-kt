@@ -42,9 +42,11 @@ rootProject.name = "java-application-skeleton-with-gradle-kt"
 includeSubproject(file("projects-application"))
 includeSubproject(file("projects-library"))
 
-// ---------------------------------------------------------------------------------------------------------------------
-
 private fun includeSubproject(dir: File) {
+	if (!dir.isDirectory) {
+		return
+	}
+
 	dir.listFiles()?.forEach { subDir ->
 		if (subDir.isDirectory) {
 			include("${dir.name}:${subDir.name}")
