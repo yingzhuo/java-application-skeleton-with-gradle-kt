@@ -18,6 +18,7 @@
 /* =====================================================================================================================
  * SpringBoot应用程序构建逻辑
  * =================================================================================================================== */
+import gradle.kotlin.dsl.accessors._2b206eff1f19107f5438853fc8fc2b88.ext
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
@@ -136,4 +137,22 @@ distributions {
 
 tasks.named("distTar") {
 	enabled = false
+}
+
+tasks.register<Copy>("prepareDockerContext") {
+	dependsOn("assemble")
+
+	from("src/main/docker") {
+		include("**/Dockerfile", "**/.dockerignore", "**/startup.sh")
+	}
+	from(layout.buildDirectory.dir("libs")) {
+		include("**/*.jar")
+	}
+	into(layout.buildDirectory.dir("docker-context"))
+}
+
+tasks.register<Exec>("buildDockerImage") {
+	dependsOn("prepareDockerContext")
+	commandLine("bash", "$rootDir/buildSrc/config/docker/build-image.sh", "${project.ext["dockerTag"]}")
+	workingDir(layout.buildDirectory.dir("docker-context"))
 }

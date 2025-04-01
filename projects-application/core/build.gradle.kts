@@ -3,6 +3,10 @@ plugins {
 	id("buildlogic.spring-boot-conventions")
 }
 
+ext {
+	set("dockerTag", "yingzhuo/java-application-skeleton-with-gradle-kotlin:latest")
+}
+
 dependencies {
 
 	// 其他子项目
