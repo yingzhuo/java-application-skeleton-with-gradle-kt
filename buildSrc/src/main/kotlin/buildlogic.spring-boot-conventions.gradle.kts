@@ -143,10 +143,12 @@ tasks.register<Copy>("prepareDockerContext") {
 	dependsOn("assemble")
 
 	from("src/main/docker") {
-		include("**/Dockerfile", "**/.dockerignore", "**/startup.sh")
+		include("**/*")
 	}
+
 	from(layout.buildDirectory.dir("libs")) {
 		include("**/*.jar")
+		exclude("**/*-javadoc.jar", "**/*-sources.jar")
 	}
 	into(layout.buildDirectory.dir("docker-context"))
 }
