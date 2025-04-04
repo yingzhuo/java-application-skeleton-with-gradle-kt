@@ -1,7 +1,6 @@
 /* =====================================================================================================================
  * SpringBoot应用程序构建逻辑
  * =================================================================================================================== */
-import gradle.kotlin.dsl.accessors._2b206eff1f19107f5438853fc8fc2b88.ext
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
@@ -116,6 +115,11 @@ distributions {
 			}
 		}
 	}
+}
+
+
+tasks.named("distZip") {
+	enabled = true
 }
 
 tasks.named("distTar") {
