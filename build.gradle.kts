@@ -14,7 +14,7 @@ defaultTasks("distZip")
 
 allprojects {
 	group = "com.mycompany.myproject"
-	version = "1.0.0"
+	version = project.ext["projectVersion"].toString()
 }
 
 addLicenseHeader {

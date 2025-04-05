@@ -61,8 +61,8 @@ open class LicensePlugin : Plugin<Project> {
 					"**/*.groovy",
 					"**/*.kt",
 					"**/*.scala",
-					"buildSrc/**/*.gradle",
-					"buildSrc/**/*.gradle.kts"
+					//"buildSrc/**/*.gradle",
+					//"buildSrc/**/*.gradle.kts"
 				)
 			}.forEach { file ->
 				var content = file.readText()
