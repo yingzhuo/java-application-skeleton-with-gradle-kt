@@ -32,10 +32,10 @@ tasks.register<Exec>("github") {
 	commandLine("bash", "$rootDir/buildSrc/config/github/push.sh")
 }
 
-tasks.named("clean") {
-	mustRunAfter(getLeafProjectNames(rootProject).map { "${it}:clean" })
-	delete(
-		layout.projectDirectory.dir(".kotlin"),
-		layout.projectDirectory.dir("buildSrc/.kotlin")
-	)
-}
+//tasks.named("clean") {
+//	mustRunAfter(getLeafProjectNames(rootProject).map { "${it}:clean" })
+//	delete(
+//		layout.projectDirectory.dir(".kotlin"),
+//		layout.projectDirectory.dir("buildSrc/.kotlin")
+//	)
+//}
