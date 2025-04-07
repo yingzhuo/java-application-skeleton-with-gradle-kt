@@ -20,12 +20,3 @@ dependencies {
 	implementation("io.spring.gradle:dependency-management-plugin:${project.extra["dependencyManagementPluginVersion"]}")
 	implementation("com.gorylenko.gradle-git-properties:gradle-git-properties:${project.extra["gitPluginVersion"]}")
 }
-
-gradlePlugin {
-	plugins {
-		create("LicensePlugin") {
-			id = "buildlogic.license"
-			implementationClass = "buildlogic.gradle.plugin.LicensePlugin"
-		}
-	}
-}
