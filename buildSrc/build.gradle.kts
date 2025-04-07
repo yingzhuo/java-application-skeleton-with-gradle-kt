@@ -5,7 +5,7 @@ plugins {
 }
 
 file("${rootDir}/../gradle.properties")
-	.inputStream()
+	.reader(Charsets.ISO_8859_1)
 	.use {
 		val properties = Properties()
 		properties.load(it)
@@ -15,7 +15,6 @@ file("${rootDir}/../gradle.properties")
 	}
 
 dependencies {
-	// 其他
 	implementation("org.springframework.boot:spring-boot-gradle-plugin:${project.extra["springBootVersion"]}")
 	implementation("io.spring.gradle:dependency-management-plugin:${project.extra["dependencyManagementPluginVersion"]}")
 	implementation("com.gorylenko.gradle-git-properties:gradle-git-properties:${project.extra["gitPluginVersion"]}")

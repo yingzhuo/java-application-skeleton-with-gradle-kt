@@ -38,10 +38,14 @@ dependencyResolutionManagement {
 	repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 }
 
+// root project
 rootProject.name = "java-application-skeleton-with-gradle-kt"
+
+// sub-projects
 includeSubproject(file("projects-application"))
 includeSubproject(file("projects-library"))
 
+// tools
 private fun includeSubproject(dir: File) {
 	if (!dir.isDirectory) {
 		return
@@ -49,7 +53,11 @@ private fun includeSubproject(dir: File) {
 
 	dir.listFiles()?.forEach { subDir ->
 		if (subDir.isDirectory) {
-			include("${dir.name}:${subDir.name}")
+			for (subSubFile in subDir.listFiles() ?: emptyArray()) {
+				if (subSubFile.isFile || subSubFile.name == "build.gradle.kts") {
+					include("${dir.name}:${subDir.name}")
+				}
+			}
 		}
 	}
 }
