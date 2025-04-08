@@ -42,20 +42,22 @@ dependencyResolutionManagement {
 rootProject.name = "java-application-skeleton-with-gradle-kt"
 
 // sub-projects
-includeSubproject(file("projects-application"))
-includeSubproject(file("projects-library"))
+listOf("projects-application", "projects-library").forEach {
+	includeSubproject(it)
+}
 
 // tools
-private fun includeSubproject(dir: File) {
-	if (!dir.isDirectory) {
+private fun includeSubproject(dir: String) {
+	val directory = File(dir)
+	if (!directory.isDirectory) {
 		return
 	}
 
-	dir.listFiles()?.forEach { subDir ->
+	directory.listFiles()?.forEach { subDir ->
 		if (subDir.isDirectory) {
 			for (subSubFile in subDir.listFiles() ?: emptyArray()) {
 				if (subSubFile.isFile || subSubFile.name == "build.gradle.kts") {
-					include("${dir.name}:${subDir.name}")
+					include("${directory.name}:${subDir.name}")
 				}
 			}
 		}
