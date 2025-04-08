@@ -23,12 +23,12 @@ java {
 		languageVersion = JavaLanguageVersion.of("${project.ext["javaVersion"]}")
 	}
 
-	// withSourcesJar()
-	// withJavadocJar()
+	//withSourcesJar()
+	//withJavadocJar()
 }
 
 tasks.named<Jar>("jar") {
-	archiveFileName = "${project.name}-${rootProject.version}.jar"
+	archiveFileName = "${project.name}-${project.version}.jar"
 }
 
 tasks.named<Test>("test") {

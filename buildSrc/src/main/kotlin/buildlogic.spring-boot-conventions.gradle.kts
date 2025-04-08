@@ -17,7 +17,7 @@ tasks.named<Jar>("jar") {
 
 tasks.named<BootJar>("bootJar") {
 
-	archiveFileName = "${project.name}-${rootProject.version}.jar"
+	archiveFileName = "${project.name}-${project.version}.jar"
 
 	manifest {
 		attributes(
@@ -116,7 +116,6 @@ distributions {
 		}
 	}
 }
-
 
 tasks.named("distZip") {
 	enabled = true
