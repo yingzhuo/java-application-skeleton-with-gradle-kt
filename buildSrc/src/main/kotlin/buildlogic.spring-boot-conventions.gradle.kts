@@ -92,6 +92,7 @@ springBoot {
 }
 
 gitProperties {
+	dotGitDirectory = file("$rootDir/.git")
 	keys = listOf("git.branch", "git.commit.id", "git.commit.id.abbrev", "git.commit.time", "git.dirty")
 	dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
 	dateFormatTimeZone = "Asia/Shanghai"
