@@ -53,11 +53,3 @@ fun getConfig(project: Project, name: String, defaultValue: String? = null): Str
 	}
 	return value.toString()
 }
-
-fun mkdir(dir: File): Unit {
-	dir.mkdirs()
-}
-
-fun copy(src: File, dest: File): Unit {
-	Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING)
-}

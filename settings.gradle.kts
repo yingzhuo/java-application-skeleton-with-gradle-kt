@@ -43,21 +43,15 @@ rootProject.name = "java-application-skeleton-with-gradle-kt"
 
 // sub-projects
 listOf("projects-application", "projects-library").forEach {
-	includeSubproject(it)
-}
+	val directory = File(it)
 
-// tools
-private fun includeSubproject(dir: String) {
-	val directory = File(dir)
-	if (!directory.isDirectory) {
-		return
-	}
-
-	directory.listFiles()?.forEach { subDir ->
-		if (subDir.isDirectory) {
-			for (subSubFile in subDir.listFiles() ?: emptyArray()) {
-				if (subSubFile.isFile || subSubFile.name == "build.gradle.kts") {
-					include("${directory.name}:${subDir.name}")
+	if (directory.isDirectory) {
+		directory.listFiles()?.forEach { subDir ->
+			if (subDir.isDirectory) {
+				for (subSubFile in subDir.listFiles() ?: emptyArray()) {
+					if (subSubFile.isFile || subSubFile.name == "build.gradle.kts") {
+						include("${directory.name}:${subDir.name}")
+					}
 				}
 			}
 		}
