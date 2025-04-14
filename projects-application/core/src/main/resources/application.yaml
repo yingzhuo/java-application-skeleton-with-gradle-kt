@@ -1,4 +1,0 @@
-logging:
-  level:
-    root: info
-    com.mycompany.myproject: trace

@@ -42,7 +42,7 @@ dependencyResolutionManagement {
 rootProject.name = "java-application-skeleton-with-gradle-kt"
 
 // sub-projects
-setOf("projects-application", "projects-library").forEach {
+arrayOf("projects-app", "projects-lib").forEach {
 	val dir = file(it)
 
 	// 目录有误
