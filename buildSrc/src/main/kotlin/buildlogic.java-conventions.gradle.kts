@@ -9,9 +9,7 @@ plugins {
 
 dependencyManagement {
 	imports {
-		mavenBom("org.springframework.boot:spring-boot-dependencies:${project.ext["springBootVersion"]}") {
-			bomProperties(mapOf())
-		}
+		mavenBom("org.springframework.boot:spring-boot-dependencies:${project.ext["springBootVersion"]}")
 	}
 }
 

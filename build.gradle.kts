@@ -1,5 +1,5 @@
 plugins {
-	id("buildlogic.root-conventions")
+	id("buildlogic.root-project-conventions")
 }
 
 ext {
@@ -12,5 +12,5 @@ defaultTasks("distZip")
 
 allprojects {
 	group = "io.github.yingzhuo"
-	version = project.ext["projectVersion"].toString()
+	version = "${ext["projectVersion"]}"
 }

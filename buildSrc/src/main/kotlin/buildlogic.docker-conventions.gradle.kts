@@ -16,6 +16,7 @@ tasks.register<Copy>("prepareDockerContext") {
 		include("**/*.jar")
 		exclude("**/*-javadoc.jar", "**/*-sources.jar")
 	}
+
 	into(layout.buildDirectory.dir("docker-context"))
 }
 
