@@ -37,8 +37,10 @@ dependencies {
 }
 
 tasks.withType<ProcessResources> {
-	filter<ReplaceTokens>(
-		"tokens" to
-			mapOf("APPLICATION_NAME" to "java-application-skeleton")
+	val replaceTokenMap = mapOf<String, Any>(
+		"APPLICATION_NAME" to project.name,
+		"APPLICATION_VERSION" to project.name,
 	)
+
+	filter<ReplaceTokens>("tokens" to replaceTokenMap)
 }
